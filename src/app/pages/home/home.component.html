@@ -1,0 +1,22 @@
+<h3 (click)="logoutUser()" class="logout">Logout</h3>
+<header (click)="navigateTo('post')">
+  <h1>Send your message!</h1>
+</header>
+<main>
+  <h2>User posts</h2>
+  <section>
+    @defer(on viewport) {
+    @if(messageslist) {
+    @for(post of messageslist; track post.message_date){
+    <h5>{{ post.user_name }}</h5>
+    <p>{{ post.message_text }}</p>
+    <p>{{ post.message_date }}</p>
+    <br>
+    <hr>
+    }
+    }
+    } @placeholder {
+    <p>Loading...</p>
+    }
+  </section>
+</main>

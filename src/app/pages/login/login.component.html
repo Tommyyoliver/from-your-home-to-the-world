@@ -1,0 +1,29 @@
+<main>
+  <div class="title-container">
+    <h1>From your home to the World</h1>
+  </div>
+  <div class="card-container">
+    <form>
+      <div class="name-container">
+        <label for="name">Your name</label>
+        <input [formControl]="controlUserName" type="text" name="name" id="name" [(ngModel)]="username" />
+        @if(!controlUserName.valid && controlUserName.touched) {
+        <p class="alerts">Name must have between 4 and 15</p>
+        }
+      </div>
+      <div class="lastname-container">
+        <label for="lastname">Your lastname</label>
+        <input [formControl]="controlUserPassword" type="password" name="lastname" id="lastname"
+          [(ngModel)]="password" />
+        @if(!controlUserPassword.valid && controlUserPassword.touched) {
+        <p class="alerts">Password must have min 8 characters</p>
+        }
+      </div>
+    </form>
+    <div class="button-container">
+      <button (click)="registerUser()">REGISTER</button>
+      <button (click)="loginUser()">LOGIN</button>
+    </div>
+
+  </div>
+</main>
