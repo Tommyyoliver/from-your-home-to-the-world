@@ -6,7 +6,7 @@
     <textarea [formControl]="control" placeholder="Write text"></textarea>
   </div>
   @if(!control.valid && control.touched) {
-  <p>the message must be between 4 and 100 characters</p>
+  <p class="error">the message must be between 4 and 100 characters</p>
   }
   <div class="buttons-container">
     <button (click)="navigateTo('')">Cancel</button>

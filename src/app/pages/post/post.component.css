@@ -1,6 +1,7 @@
 main {
+  min-width: 200px;
   width: 85vw;
-  min-height: 25vh;
+  min-height: 100vh;
   margin: 0 auto;
 }
 
@@ -8,7 +9,7 @@ main {
   width: 85vw;
   min-height: 25vh;
   margin: 0 auto;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #cccccc;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,17 +26,20 @@ main {
   font-size: 1.2rem;
   font-weight: 600;
   width: 100%;
+  max-width: 700px;
   height: 150px;
   margin-top: 50px;
   padding: 3px;
-  border: 1px solid black;
-  border-radius: 8px;
+  border: 3px solid #cccccc;
+  border-radius: 0px;
   resize: none;
   outline: none;
 }
 
 .buttons-container {
   width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
   margin-top: 50px;
   display: flex;
   justify-content: space-around;
@@ -44,8 +48,21 @@ main {
 
 .buttons-container button {
   width: 100px;
-  border: none;
+  border: 1px solid #dddddd;
   border-radius: 8px;
+  background: #ffffff;
   font-size: 1.3rem;
   padding: 6px;
+  box-shadow: -4px 6px 22px 0px rgba(204, 204, 204, 1);
+  cursor: pointer;
+  transition: .2s;
+}
+
+.buttons-container button:hover {
+  background: #dddddd;
+}
+
+.error {
+  color: #a00;
+  font-size: .9rem;
 }

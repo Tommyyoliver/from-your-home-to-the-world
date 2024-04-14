@@ -50,9 +50,7 @@ export class LoginComponent implements OnInit {
   async registerUser() {
     if (this.verifyControl()) {
       await getAllUsers().then(users => {
-        // console.log(users.rows);
         this.usersList = users.rows;
-        console.log(this.usersList);
       });
       this.existUserName = false;
       for (const user of this.usersList) {

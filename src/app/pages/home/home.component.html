@@ -1,4 +1,7 @@
-<h3 (click)="logoutUser()" class="logout">Logout</h3>
+<div class="logout">
+  <h3 (click)="logoutUser()">Logout</h3>
+</div>
+
 <header (click)="navigateTo('post')">
   <h1>Send your message!</h1>
 </header>
@@ -8,11 +11,12 @@
     @defer(on viewport) {
     @if(messageslist) {
     @for(post of messageslist; track post.message_date){
-    <h5>{{ post.user_name }}</h5>
-    <p>{{ post.message_text }}</p>
-    <p>{{ post.message_date }}</p>
-    <br>
-    <hr>
+    <div class="message-container">
+      <h5 class="message-name">{{ post.user_name }}</h5>
+      <p class="message-text">{{ post.message_text }}</p>
+      <p class="message-date">{{ post.message_date }}</p>
+      <br>
+    </div>
     }
     }
     } @placeholder {
