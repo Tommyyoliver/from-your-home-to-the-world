@@ -1,8 +1,10 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { getAllUsers } from '../client/client';
+import { ClientService } from '../service/client.service';
 
 export const authGuard: CanActivateFn = async (route, state) => {
+
+  const clientService = inject(ClientService);
 
   const router = inject(Router);
   let usersList: any;
@@ -13,7 +15,7 @@ export const authGuard: CanActivateFn = async (route, state) => {
     userLogued = ""
   }
 
-  await getAllUsers().then(users => {
+  await clientService.getAllUsers().then(users => {
     usersList = users.rows ?? [];
   })
   if (userLogued.id) {

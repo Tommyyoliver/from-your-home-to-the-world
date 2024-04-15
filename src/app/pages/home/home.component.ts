@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { getAllMessage } from '../../client/client';
+import { ClientService } from '../../service/client.service';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +12,7 @@ import { getAllMessage } from '../../client/client';
 export class HomeComponent implements OnInit {
 
   private router = inject(Router);
+  private clientService = inject(ClientService);
 
   messageslist: Array<any> = [];
 
@@ -25,7 +26,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    getAllMessage().then(messages => {
+    this.clientService.getAllMessage().then(messages => {
       this.messageslist = messages.rows
     });
   }

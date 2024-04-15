@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { addNewUser, getAllUsers, getUser } from '../../client/client';
 import { Router } from '@angular/router';
+import { ClientService } from '../../service/client.service';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   private route = inject(Router);
+  private clientService = inject(ClientService);
 
   username: string = "";
   password: string = "";
@@ -49,7 +50,7 @@ export class LoginComponent implements OnInit {
 
   async registerUser() {
     if (this.verifyControl()) {
-      await getAllUsers().then(users => {
+      await this.clientService.getAllUsers().then(users => {
         this.usersList = users.rows;
       });
       this.existUserName = false;
@@ -61,8 +62,8 @@ export class LoginComponent implements OnInit {
         }
       }
       if (!this.existUserName) {
-        await addNewUser(this.username, this.password);
-        await getUser(this.username).then(user => {
+        await this.clientService.addNewUser(this.username, this.password);
+        await this.clientService.getUser(this.username).then(user => {
           this.dataUserLogued = {
             id: user.rows[0]['user_id'],
             name: user.rows[0]['user_name']
@@ -78,12 +79,12 @@ export class LoginComponent implements OnInit {
 
   async loginUser() {
     if (this.verifyControl()) {
-      await getAllUsers().then(users => {
+      await this.clientService.getAllUsers().then(users => {
         this.usersList = users.rows;
       });
       for (const user of this.usersList) {
         if (user.user_name == this.username && user.user_password == this.password) {
-          await getUser(this.username).then(user => {
+          await this.clientService.getUser(this.username).then(user => {
             this.dataUserLogued = {
               id: user.rows[0]['user_id'],
               name: user.rows[0]['user_name']

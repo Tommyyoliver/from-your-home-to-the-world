@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { addNewMessage } from '../../client/client';
+import { ClientService } from '../../service/client.service';
 
 @Component({
   selector: 'app-post',
@@ -13,6 +13,7 @@ import { addNewMessage } from '../../client/client';
 export class PostComponent {
 
   private router = inject(Router);
+  private clientService = inject(ClientService);
 
   private dataUserLogued = localStorage.getItem('user') ?? "";
 
@@ -38,7 +39,7 @@ export class PostComponent {
 
   pub() {
     if (this.control.valid && this.control.touched) { // validators form
-      addNewMessage(this.control.value, this.getTimeNow(), JSON.parse(this.dataUserLogued).id);
+      this.clientService.addNewMessage(this.control.value, this.getTimeNow(), JSON.parse(this.dataUserLogued).id);
       this.control.reset(); // format control from form
       this.navigateTo('');
     }
